@@ -82,7 +82,7 @@ namespace Utility.ForData.User
             if (UserSaveData == null)
                 Load();
 
-            UserSaveData.AddCoin(coin);
+            UserSaveData.AddAsset(ForAsset.EAssetType.Coin, coin);
         }
 
         public static void ConsumeCoin(int coin)
@@ -90,7 +90,23 @@ namespace Utility.ForData.User
             if (UserSaveData == null)
                 Load();
 
-            UserSaveData.ConsumeCoin(coin);
+            UserSaveData.ConsumeAsset(ForAsset.EAssetType.Coin, coin);
+        }
+
+        public static void AddGem(int gem)
+        {
+            if (UserSaveData == null)
+                Load();
+
+            UserSaveData.AddAsset(ForAsset.EAssetType.Gem, gem);
+        }
+
+        public static void ConsumeGem(int gem)
+        {
+            if (UserSaveData == null)
+                Load();
+
+            UserSaveData.ConsumeAsset(ForAsset.EAssetType.Gem, gem);
         }
 
         // ----- Private

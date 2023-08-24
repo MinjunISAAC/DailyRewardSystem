@@ -4,6 +4,9 @@ using System;
 // ----- Unity
 using UnityEngine;
 
+// ----- User Defined
+using Utility.ForAsset;
+
 namespace Utility.ForData.User
 {
     [Serializable]
@@ -18,6 +21,7 @@ namespace Utility.ForData.User
 
         [Space(1.5f)] [Header("재화")]
         [SerializeField] private int      _userCoin              = 0;
+        [SerializeField] private int      _userGem               = 0;
 
         [Space(1.5f)] [Header("획득 정보")]
         [SerializeField] private int      _lastAcquiredItemIndex = 0;
@@ -31,22 +35,45 @@ namespace Utility.ForData.User
 
         // ----- Int
         public int UserCoin              => _userCoin;
+        public int UserGem               => _userGem;
         public int LastAcquiredItemIndex => _lastAcquiredItemIndex;
 
         // --------------------------------------------------
         // Functions - Nomal
         // --------------------------------------------------
-        public void AddCoin(int coin) => _userCoin += coin;
-
-        public void ConsumeCoin(int coin) 
-        {
-            if (_userCoin < coin)
+        public void AddAsset(EAssetType type, int assetValue) 
+        { 
+            switch (type)
             {
-                // [TODO] Toast 메세지 필요함.
-                return;
+                case EAssetType.Coin: _userCoin += assetValue; break;
+                case EAssetType.Gem:  _userGem  += assetValue;  break;
             }
+        }
 
-            _userCoin -= coin;
+        public void ConsumeAsset(EAssetType type, int assetValue)
+        {
+            switch (type)
+            {
+                case EAssetType.Coin:
+                    if (_userCoin < assetValue)
+                    {
+                        // [TODO] Toast 메세지 필요함.
+                        return;
+                    }
+
+                    _userCoin -= assetValue; 
+                    break;
+
+                case EAssetType.Gem:
+                    if (_userGem < assetValue)
+                    {
+                        // [TODO] Toast 메세지 필요함.
+                        return;
+                    }
+
+                    _userGem -= assetValue;
+                    break;
+            }
         }
     }
 }
