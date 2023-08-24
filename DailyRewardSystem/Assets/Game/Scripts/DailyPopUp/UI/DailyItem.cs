@@ -14,11 +14,18 @@ namespace InGame.DailySystem.ForUI
         // --------------------------------------------------
         // Components
         // --------------------------------------------------
-        [SerializeField] private Button          _BTN_Click   = null;
-        [SerializeField] private Image           _IMG_Hide    = null;
-        [SerializeField] private Image           _IMG_Icon    = null;
-        [SerializeField] private TextMeshProUGUI _TMP_DayText = null;
-        [SerializeField] private TextMeshProUGUI _TMP_Cost    = null;
+        [Header("Button")]
+        [SerializeField] private Button          _BTN_Click         = null;
+        
+        [Space(1.5f)] [Header("Texts")]
+        [SerializeField] private TextMeshProUGUI _TMP_DayText       = null;
+        [SerializeField] private TextMeshProUGUI _TMP_Cost          = null;
+
+        [Space(1.5f)] [Header("Images")]
+        [SerializeField] private Image           _IMG_Hide          = null;
+        [SerializeField] private Image           _IMG_Icon          = null;
+        [SerializeField] private Sprite          _SPRITE_UnPurchase = null;
+        [SerializeField] private Sprite          _SPRITE_Purchase   = null;
 
         // --------------------------------------------------
         // Functions - Nomal
