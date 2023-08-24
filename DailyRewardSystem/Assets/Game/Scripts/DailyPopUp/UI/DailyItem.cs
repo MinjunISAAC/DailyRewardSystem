@@ -18,6 +18,7 @@ namespace InGame.DailySystem.ForUI
         [SerializeField] private Image           _IMG_Hide    = null;
         [SerializeField] private Image           _IMG_Icon    = null;
         [SerializeField] private TextMeshProUGUI _TMP_DayText = null;
+        [SerializeField] private TextMeshProUGUI _TMP_Cost    = null;
 
         // --------------------------------------------------
         // Functions - Nomal
