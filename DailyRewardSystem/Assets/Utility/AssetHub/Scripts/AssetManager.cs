@@ -15,17 +15,17 @@ namespace Utility.ForAsset.Manage
         // --------------------------------------------------
         // Variables
         // --------------------------------------------------
-        private static AssetHubView _assetHubView = null;
+        private static AssetHubSystem _assetHubView = null;
 
         // --------------------------------------------------
         // Properties
         // --------------------------------------------------
-        public static AssetHubView AssetHubView => _assetHubView;
+        public static AssetHubSystem AssetHubView => _assetHubView;
 
         // --------------------------------------------------
         // Functions - Nomal
         // --------------------------------------------------
-        public static void SetAssetHubView(AssetHubView assetHubView)
+        public static void SetAssetHubView(AssetHubSystem assetHubView)
         {
             if (_assetHubView != null)
                 return;

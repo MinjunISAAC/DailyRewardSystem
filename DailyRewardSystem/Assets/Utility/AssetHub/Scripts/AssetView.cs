@@ -19,7 +19,7 @@ namespace Utility.ForAsset.ForUI
         // Variables
         // --------------------------------------------------
         // ----- Public
-        public void OnInit(int value)
+        public void RefreshAssetValue(int value)
         {
             _TMP_value.text = _FormatAssetValue(value);
         }

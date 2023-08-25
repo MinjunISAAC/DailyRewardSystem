@@ -1,17 +1,13 @@
-// ----- C#
-using System.Collections;
-using System.Collections.Generic;
-
 // ----- Unity
 using UnityEngine;
+using UnityEngine.UI;
 
 // ----- User Defined
-using InGame.DailySystem.ForUI;
-using InGame.DailySystem.ForData.Helper;
 using Utility.ForData.ForJson;
 using Utility.ForAsset;
 using Utility.ForData.User;
-using UnityEngine.UI;
+using InGame.DailySystem.ForUI;
+using InGame.DailySystem.ForData.Helper;
 
 namespace InGame.DailySystem.ForManage
 {
@@ -74,8 +70,8 @@ namespace InGame.DailySystem.ForManage
             _dailyPopUpView.SetToRewardItems(datas, _Reward);
         }
 
-        public void VisiableDailyPopUp(bool isShow) => _dailyPopUpView.gameObject.SetActive(isShow);
-
+        public void VisiableDailyPopUp(bool isShow)    => _dailyPopUpView.gameObject.SetActive(isShow);
+        public void VisiableDailyPopUpBtn(bool isShow) => _BTN_dailyPopUp.gameObject.SetActive(isShow);
         private void _Reward(EAssetType assetType, int cost) 
         {
             switch (assetType) 

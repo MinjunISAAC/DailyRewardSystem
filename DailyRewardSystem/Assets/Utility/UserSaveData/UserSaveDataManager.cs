@@ -6,6 +6,7 @@ using System.Text;
 // ----- Unity
 using UnityEngine;
 using UnityEditor;
+using Utility.ForAsset.ForUI;
 
 namespace Utility.ForData.User
 {
@@ -75,6 +76,7 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.AddAsset(ForAsset.EAssetType.Coin, coin);
+            AssetHubSystem.Instance.RefreshAsset();
             Save();
         }
 
@@ -84,6 +86,7 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.ConsumeAsset(ForAsset.EAssetType.Coin, coin);
+            AssetHubSystem.Instance.RefreshAsset();
             Save();
         }
 
@@ -93,6 +96,7 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.AddAsset(ForAsset.EAssetType.Gem, gem);
+            AssetHubSystem.Instance.RefreshAsset();
             Save();
         }
 
@@ -102,6 +106,7 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.ConsumeAsset(ForAsset.EAssetType.Gem, gem);
+            AssetHubSystem.Instance.RefreshAsset();
             Save();
         }
 

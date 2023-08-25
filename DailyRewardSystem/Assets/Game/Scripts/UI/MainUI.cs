@@ -21,12 +21,12 @@ namespace InGame.ForUI
         [SerializeField] private State_ReadyView _readyView       = null;
 
         [Space(1.5f)] [Header("Asset UI Group")]
-        [SerializeField] private AssetHubView    _assetHubView    = null;
+        [SerializeField] private AssetHubSystem    _assetHubView    = null;
 
         // --------------------------------------------------
         // Properties
         // --------------------------------------------------
-        public AssetHubView   AssetHubView   => _assetHubView;
+        public AssetHubSystem   AssetHubView   => _assetHubView;
 
         // --------------------------------------------------
         // Functions - Nomal
