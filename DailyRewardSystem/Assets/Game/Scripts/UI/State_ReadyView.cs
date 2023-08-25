@@ -1,4 +1,5 @@
 // ----- C#
+using InGame.DailySystem.ForManage;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,16 +17,20 @@ namespace InGame.ForUI
         // --------------------------------------------------
         [Header("Daily System")]
         [SerializeField] Button _BTN_dailyPopUp = null;
-        
+
         // --------------------------------------------------
         // Functions - Nomal
         // --------------------------------------------------
-        public void OnInit(Action dailyPopUpOnClick)
+        private void Start()
+        {
+            OnInitToDailyRewardView(null);
+        }
+
+        public void OnInitToDailyRewardView(Action dailyPopUpOnClick)
         {
             if (_BTN_dailyPopUp.onClick.GetPersistentEventCount() > 1)
                 return;
 
-            _BTN_dailyPopUp.onClick.AddListener(() => dailyPopUpOnClick?.Invoke());
         }
     }
 }

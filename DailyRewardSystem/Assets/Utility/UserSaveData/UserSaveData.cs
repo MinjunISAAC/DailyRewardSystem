@@ -16,8 +16,8 @@ namespace Utility.ForData.User
         // Components
         // --------------------------------------------------
         [Header("유저 접속 정보")]
-        [SerializeField] private DateTime _entryDataTime         = default;
-        [SerializeField] private DateTime _exitDataTime          = default;
+        [SerializeField] private string   _entryDataTime         = default;
+        [SerializeField] private string   _exitDataTime          = default;
 
         [Space(1.5f)] [Header("재화")]
         [SerializeField] private int      _userCoin              = 0;
@@ -30,8 +30,8 @@ namespace Utility.ForData.User
         // Properties
         // --------------------------------------------------
         // ----- DataTime
-        public DateTime EntryDataTime => _entryDataTime;
-        public DateTime ExitDataTime  => _exitDataTime;
+        public string EntryDataTime => _entryDataTime;
+        public string ExitDataTime  => _exitDataTime;
 
         // ----- Int
         public int UserCoin              => _userCoin;
@@ -75,5 +75,17 @@ namespace Utility.ForData.User
                     break;
             }
         }
+
+        public void SetExitToDateTime(DateTime dateTime) 
+        {
+            var dateTimeStr = $"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}";
+            _exitDataTime = dateTimeStr;
+        }
+
+        public void SetEntryToDateTime(DateTime dateTime) 
+        {
+            var dateTimeStr = $"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}";
+            _entryDataTime = dateTimeStr;
+        } 
     }
 }

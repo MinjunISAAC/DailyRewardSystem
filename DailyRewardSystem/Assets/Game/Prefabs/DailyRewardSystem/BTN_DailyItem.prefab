@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2951161911268899691}
   - component: {fileID: 8759101738985765192}
   m_Layer: 5
-  m_Name: TMP_Coin
+  m_Name: TMP_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,12 +427,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BTN_Click: {fileID: 33597254619593222}
-  _TMP_DayText: {fileID: 3755687636625459275}
-  _TMP_Cost: {fileID: 8759101738985765192}
+  _TMP_dayText: {fileID: 3755687636625459275}
+  _TMP_cost: {fileID: 8759101738985765192}
   _IMG_Hide: {fileID: 6483097805938615125}
   _IMG_Icon: {fileID: 595226999129465}
   _SPRITE_UnPurchase: {fileID: 21300000, guid: daafccf0d11f88043ab49b8633e48308, type: 3}
   _SPRITE_Purchase: {fileID: 21300000, guid: c0ee84f4e5bcfbe4cae7e22b88ee1537, type: 3}
+  _SPRITE_coin: {fileID: 21300000, guid: 6647f674d483d9e4891bfc279a30fdbf, type: 3}
+  _SPRITE_gem: {fileID: 21300000, guid: 208557bcefdafc249b267799287bed17, type: 3}
 --- !u!114 &8454908014640404487
 MonoBehaviour:
   m_ObjectHideFlags: 0

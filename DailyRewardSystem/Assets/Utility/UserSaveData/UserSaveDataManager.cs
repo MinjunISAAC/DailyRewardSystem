@@ -30,14 +30,6 @@ namespace Utility.ForData.User
         // Functions - Nomal
         // --------------------------------------------------
         // ----- Public
-        public static void CreateToUserSaveData(bool ignoreSaveData = false)
-        {
-            UserSaveData = new UserSaveData();
-
-            if (!ignoreSaveData)
-                Save();
-        }
-
         public static void Load()
         {
             if (!_TryLoad(FILE_NAME, out string fileContents))
@@ -83,6 +75,7 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.AddAsset(ForAsset.EAssetType.Coin, coin);
+            Save();
         }
 
         public static void ConsumeCoin(int coin)
@@ -91,6 +84,7 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.ConsumeAsset(ForAsset.EAssetType.Coin, coin);
+            Save();
         }
 
         public static void AddGem(int gem)
@@ -99,6 +93,7 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.AddAsset(ForAsset.EAssetType.Gem, gem);
+            Save();
         }
 
         public static void ConsumeGem(int gem)
@@ -107,6 +102,51 @@ namespace Utility.ForData.User
                 Load();
 
             UserSaveData.ConsumeAsset(ForAsset.EAssetType.Gem, gem);
+            Save();
+        }
+
+        public static void SetExitToDateTime(DateTime dateTime)
+        {
+            if (UserSaveData == null)
+                Load();
+
+            UserSaveData.SetExitToDateTime(dateTime);
+            Save();
+        }
+
+        public static void SetEntryToDateTime(DateTime dateTime)
+        {
+            if (UserSaveData == null)
+                Load();
+
+           
+            UserSaveData.SetEntryToDateTime(dateTime);
+            Save();
+        }
+
+        public static bool ShowToDailyPopUp()
+        {
+            string nowDateTime  = DateTime.Now.ToString("yyyy-MM-dd");
+            string prevDateTime = UserSaveData.EntryDataTime;
+
+            if (string.IsNullOrEmpty(prevDateTime))
+                prevDateTime = $"0000-00-00";
+
+            string[] nowDateParts  = nowDateTime.Split('-');
+            string[] prevDateParts = prevDateTime.Split('-');
+
+            int nowYear  = int.Parse(nowDateParts[0]);
+            int nowMonth = int.Parse(nowDateParts[1]);
+            int nowDay   = int.Parse(nowDateParts[2]);
+
+            int prevYear  = int.Parse(prevDateParts[0]);
+            int prevMonth = int.Parse(prevDateParts[1]);
+            int prevDay   = int.Parse(prevDateParts[2]);
+
+            if ((nowYear  == prevYear)  &&
+                (nowMonth == prevMonth) &&
+                (nowDay   == prevDay)) return true;
+            else                       return false;
         }
 
         // ----- Private
@@ -129,6 +169,7 @@ namespace Utility.ForData.User
             try
             {
                 fileContents = File.ReadAllText(filePath);
+
                 return true;
             }
             catch (Exception e)
@@ -137,7 +178,8 @@ namespace Utility.ForData.User
                 return false;
             }
         }
-        private static bool _TrySave(string fileName, string saveDataContents, bool useEncodeFileName = true, bool useEncodeData = true)
+
+        private static bool _TrySave(string fileName, string saveDataContents)
         {
             if (string.IsNullOrEmpty(fileName))
             {
@@ -167,7 +209,6 @@ namespace Utility.ForData.User
                 {
                     fileContents = saveDataContents;
                     File.WriteAllText(filePath, fileContents);
-
                     return true;
                 }
                 catch (Exception e)

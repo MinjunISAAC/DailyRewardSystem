@@ -18,13 +18,10 @@ namespace InGame.ForUI
         // Components
         // --------------------------------------------------
         [Header("State UI Group")]
-        [SerializeField] private State_ReadyView _readyView    = null;
-
-        [Header("UI Group")]
-        [SerializeField] private DailyPopUpView _dailyPopUpView = null;
+        [SerializeField] private State_ReadyView _readyView       = null;
 
         [Space(1.5f)] [Header("Asset UI Group")]
-        [SerializeField] private AssetHubView    _assetHubView = null;
+        [SerializeField] private AssetHubView    _assetHubView    = null;
 
         // --------------------------------------------------
         // Properties
@@ -34,13 +31,5 @@ namespace InGame.ForUI
         // --------------------------------------------------
         // Functions - Nomal
         // --------------------------------------------------
-        public void OnInitToStateUI(Action onClick)
-        {
-            _readyView.OnInit(onClick);
-        }
-
-        public void OnInitToDailyPopUp() => _dailyPopUpView.OnInit(() => VisiableDailyPopUp(false));
-
-        public void VisiableDailyPopUp(bool visiable) => _dailyPopUpView.gameObject.SetActive(visiable);
     }
 }
