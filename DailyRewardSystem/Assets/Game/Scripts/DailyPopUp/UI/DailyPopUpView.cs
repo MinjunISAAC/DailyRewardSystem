@@ -1,4 +1,5 @@
 // ----- C#
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -31,6 +32,14 @@ namespace InGame.DailySystem.ForUI
         // --------------------------------------------------
         // Functions - Nomal
         // --------------------------------------------------
+        public void OnInit(Action closeOnClick)
+        {
+            if (_BTN_Close.onClick.GetPersistentEventCount() > 1)
+                return;
+
+            _BTN_Close.onClick.AddListener(() => closeOnClick?.Invoke());
+        }
+
         public void CreateItem()
         {
 

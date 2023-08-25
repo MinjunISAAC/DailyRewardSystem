@@ -7,7 +7,8 @@ using UnityEngine;
 
 // ----- User Defined
 using Utility.ForData.User;
-using InGame.UI;
+using Utility.ForAsset.Manage;
+using InGame.ForUI;
 
 namespace Main
 {
@@ -16,7 +17,7 @@ namespace Main
         // --------------------------------------------------
         // Components
         // --------------------------------------------------
-        [SerializeField] private MainUI _mainUI = null;
+        [SerializeField] private MainUI         _mainUI         = null;
 
         // --------------------------------------------------
         // Functions - Event
@@ -31,8 +32,12 @@ namespace Main
 
             // Static Manage Init
             var assetHubView = _mainUI.AssetHubView;
+            AssetManager.SetAssetHubView(assetHubView);
 
             // UI Init
+            _mainUI.OnInitToStateUI(() => _mainUI.VisiableDailyPopUp(true));
+            _mainUI.OnInitToDailyPopUp();
+
             assetHubView.OnInit(userData.UserCoin, userData.UserGem);
 
             yield return null;
