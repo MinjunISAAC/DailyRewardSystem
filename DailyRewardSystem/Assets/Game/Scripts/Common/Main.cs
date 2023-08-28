@@ -35,11 +35,11 @@ namespace Main
             var userData = UserSaveDataManager.UserSaveData;
 
             // Static Manage Init
-            var assetHubView = _mainUI.AssetHubView;
-            AssetManager.SetAssetHubView(assetHubView);
+            //var assetHubView = _mainUI.AssetHubView;
+            //AssetManager.SetAssetHubView(assetHubView);
 
             // UI Init
-            assetHubView.OnInit(userData.UserCoin, userData.UserGem);
+            //assetHubView.OnInit(userData.UserCoin, userData.UserGem);
 
 
 

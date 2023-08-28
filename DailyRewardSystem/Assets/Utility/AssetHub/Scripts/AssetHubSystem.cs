@@ -1,8 +1,15 @@
+// ----- C#
+using System.IO;
+
 // ----- Unity
 using UnityEngine;
+using UnityEditor;
+
+// ----- User Defined
+using Utility.ForAsset.ForUI;
 using Utility.ForData.User;
 
-namespace Utility.ForAsset.ForUI
+namespace Utility.ForAsset
 {
     public class AssetHubSystem : MonoBehaviour
     {
@@ -15,13 +22,31 @@ namespace Utility.ForAsset.ForUI
         // ----- Static Variables
         private static AssetHubSystem _instance = null;
 
+        // ----- Variables
+        private const string FILE_PATH = "Assets/Utility/AssetHub/Prefabs/AssetHubSystem.prefab";
+        private bool _isSingleton = false;
+
         // ----- Property
         public static AssetHubSystem Instance
         {
             get
             {
                 if (null == _instance)
-                    _instance = new AssetHubSystem();
+                {
+                    var existingInstance = FindObjectOfType<AssetHubSystem>();
+
+                    if (existingInstance != null)
+                    {
+                        _instance = existingInstance;
+                    }
+                    else
+                    {
+                        var origin = AssetDatabase.LoadAssetAtPath<AssetHubSystem>(FILE_PATH);
+                        _instance = Instantiate<AssetHubSystem>(origin);
+                        _instance._isSingleton = true;
+                        DontDestroyOnLoad(_instance.gameObject);
+                    }
+                }
 
                 return _instance;
             }
@@ -39,13 +64,28 @@ namespace Utility.ForAsset.ForUI
         // --------------------------------------------------
         private void Awake()
         {
-            DontDestroyOnLoad(this);
-
             // User Save Data Load
             UserSaveDataManager.Load();
             var userData = UserSaveDataManager.UserSaveData;
 
+            if (null == _instance)
+            {
+                var existingInstance = FindObjectOfType<AssetHubSystem>();
+
+                if (existingInstance != null)
+                {
+                    _instance = existingInstance;
+                    DontDestroyOnLoad(_instance.gameObject);
+                }
+            }
+
             OnInit(userData.UserCoin, userData.UserGem);
+        }
+
+        private void OnDestroy()
+        {
+            if (_isSingleton)
+                _instance = null;
         }
 
         // --------------------------------------------------

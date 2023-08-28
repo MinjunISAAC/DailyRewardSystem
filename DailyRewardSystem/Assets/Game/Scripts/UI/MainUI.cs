@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // ----- User Defined
+using Utility.ForAsset;
 using Utility.ForAsset.ForUI;
 using InGame.DailySystem.ForUI;
 
