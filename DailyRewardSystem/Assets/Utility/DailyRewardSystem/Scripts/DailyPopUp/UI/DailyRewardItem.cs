@@ -81,10 +81,18 @@ namespace InGame.DailySystem.ForUI
         {
             if (index == UserSaveDataManager.GetAcquiredItemIndex())     // 먹는 날 인경우
             {
-                _IMG_Frame.sprite       = _SPRITE_Purchase;
-                _BTN_Click.enabled      = true;
+                if (UserSaveDataManager.GetFirstEntry())
+                {
+                    _IMG_Frame.sprite       = _SPRITE_Purchase;
+                    _BTN_Click.enabled      = true;
                 
-                _IMG_Hide.gameObject.SetActive(false);
+                    _IMG_Hide.gameObject.SetActive(false);
+                }
+                else
+                {
+                    _IMG_Frame.sprite = _SPRITE_UnPurchase;
+                    _BTN_Click.enabled = false;
+                }
             }
             else if (index < UserSaveDataManager.GetAcquiredItemIndex()) // 먹은 이전인 경우
             {

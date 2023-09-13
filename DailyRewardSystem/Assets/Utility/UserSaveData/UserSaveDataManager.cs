@@ -164,8 +164,9 @@ namespace Utility.ForData.User
             else                       return false;
         }
 
-        public static int GetAcquiredItemIndex() => UserSaveData.GetAcquiredItemIndex();
-
+        public static int  GetAcquiredItemIndex()                => UserSaveData.GetAcquiredItemIndex();
+        public static bool GetFirstEntry()                       => UserSaveData.GetFirstEntry();
+        
         // ----- Private
         private static bool _TryLoad(string fileName, out string fileContents)
         {

@@ -60,7 +60,8 @@ namespace InGame.DailySystem.ForManage
         // Components
         // --------------------------------------------------
         [SerializeField] private DailyPopUpView _dailyPopUpView = null;
-        [SerializeField] private Button _BTN_dailyPopUp = null;
+        [SerializeField] private Button         _BTN_dailyPopUp = null;
+        [SerializeField] private Animation      _animation      = null;
 
         // --------------------------------------------------
         // Variables
@@ -87,7 +88,6 @@ namespace InGame.DailySystem.ForManage
                 _dailyRewardDataHelper = new DailyRewardDataHelper();
 
             _BTN_dailyPopUp.onClick.AddListener(() => VisiableDailyPopUp(true));
-            OnInit();
         }
 
         // --------------------------------------------------
@@ -103,7 +103,13 @@ namespace InGame.DailySystem.ForManage
             _dailyPopUpView.SetToRewardItems(datas, _Reward);
         }
 
-        public void VisiableDailyPopUp(bool isShow) => _dailyPopUpView.gameObject.SetActive(isShow);
+        public void VisiableDailyPopUp(bool isShow) 
+        {
+            _dailyPopUpView.gameObject.SetActive(isShow);
+
+            if (isShow) _animation.Play();
+        } 
+       
         public void VisiableDailyPopUpBtn(bool isShow) => _BTN_dailyPopUp.gameObject.SetActive(isShow);
         private void _Reward(EAssetType assetType, int cost)
         {

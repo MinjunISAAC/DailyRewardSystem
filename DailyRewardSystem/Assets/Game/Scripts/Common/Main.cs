@@ -33,27 +33,21 @@ namespace Main
             // User Save Data Load
             UserSaveDataManager.Load();
             var userData = UserSaveDataManager.UserSaveData;
+            
+            // Daily System Init
+            DailyRewardSystem.Instance.OnInit();
+
+            Debug.Log($"User Data {userData.EntryDataTime} / {userData.ExitDataTime} / {userData.FirstEntry}");
+            
+            DateTime currentDateTime = DateTime.Now;
+            UserSaveDataManager.SetEntryToDateTime(currentDateTime);
+            
+            if (userData.FirstEntry) DailyRewardSystem.Instance.VisiableDailyPopUp(true);
+            else                     DailyRewardSystem.Instance.VisiableDailyPopUp(false);
+
 
             // Static Manage Init
-            //var assetHubView = _mainUI.AssetHubView;
             //AssetManager.SetAssetHubView(assetHubView);
-
-            // UI Init
-            //assetHubView.OnInit(userData.UserCoin, userData.UserGem);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             /*
