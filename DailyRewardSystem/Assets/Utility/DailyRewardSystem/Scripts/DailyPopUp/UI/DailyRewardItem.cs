@@ -21,12 +21,14 @@ namespace InGame.DailySystem.ForUI
         // --------------------------------------------------
         [Header("Button")]
         [SerializeField] private Button          _BTN_Click         = null;
-        
+        [SerializeField] private Animation       _ANIM_Purchase     = null;
+
         [Space(1.5f)] [Header("Texts")]
         [SerializeField] private TextMeshProUGUI _TMP_dayText       = null;
         [SerializeField] private TextMeshProUGUI _TMP_cost          = null;
 
         [Space(1.5f)] [Header("Images")]
+        [SerializeField] private Image           _IMG_Frame         = null;
         [SerializeField] private Image           _IMG_Hide          = null;
         [SerializeField] private Image           _IMG_Icon          = null;
         
@@ -59,8 +61,15 @@ namespace InGame.DailySystem.ForUI
             (
                 () => 
                 { 
-                    onClick((EAssetType)(type + 1), value);  
-                    Debug.Log($"Asset {index} {type} {value}");
+                    onClick((EAssetType)(type + 1), value);
+
+                    _IMG_Frame.sprite  = _SPRITE_UnPurchase;
+                    _BTN_Click.enabled = false;
+                    
+                    _IMG_Hide.gameObject.SetActive(true);
+                    _ANIM_Purchase.Play();
+
+                    //Debug.Log($"Asset {index} {type} {value}");
                 }
             );
 
@@ -72,27 +81,21 @@ namespace InGame.DailySystem.ForUI
         {
             if (index == UserSaveDataManager.GetAcquiredItemIndex())     // 먹는 날 인경우
             {
-                _BTN_Click.interactable = true;
-
-                var colorBlock = _BTN_Click.colors;
-                colorBlock.colorMultiplier = 1f;
-
+                _IMG_Frame.sprite       = _SPRITE_Purchase;
+                _BTN_Click.enabled      = true;
+                
                 _IMG_Hide.gameObject.SetActive(false);
-
-                _BTN_Click.enabled = true;
             }
             else if (index < UserSaveDataManager.GetAcquiredItemIndex()) // 먹은 이전인 경우
             {
-                _BTN_Click.interactable = false;
-                
-                var colorBlock = _BTN_Click.colors;
-                colorBlock.colorMultiplier = 3f;
+                _IMG_Frame.sprite  = _SPRITE_UnPurchase;
+                _BTN_Click.enabled = false;
                 
                 _IMG_Hide.gameObject.SetActive(true);
-                _BTN_Click.enabled = false;
             }
             else if (index > UserSaveDataManager.GetAcquiredItemIndex()) // 먹지 못하는 경우
             {
+                _IMG_Frame.sprite  = _SPRITE_UnPurchase;
                 _BTN_Click.enabled = false;
             }
         }

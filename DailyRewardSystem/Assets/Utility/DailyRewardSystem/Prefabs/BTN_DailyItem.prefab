@@ -90,7 +90,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 01f894913257ec6468630cab4d72c842, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &1713812099580855265
@@ -427,8 +427,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BTN_Click: {fileID: 33597254619593222}
+  _ANIM_Purchase: {fileID: 7288781983424526244}
   _TMP_dayText: {fileID: 3755687636625459275}
   _TMP_cost: {fileID: 8759101738985765192}
+  _IMG_Frame: {fileID: 8454908014640404487}
   _IMG_Hide: {fileID: 6483097805938615125}
   _IMG_Icon: {fileID: 595226999129465}
   _SPRITE_UnPurchase: {fileID: 21300000, guid: daafccf0d11f88043ab49b8633e48308, type: 3}
