@@ -95,6 +95,8 @@ namespace InGame.DailySystem.ForManage
         // --------------------------------------------------
         public void OnInit()
         {
+            UserSaveDataManager.Load();
+
             var datas = JsonParser.GetDataSet();
 
             _dailyPopUpView.OnInit();
@@ -107,9 +109,16 @@ namespace InGame.DailySystem.ForManage
         {
             switch (assetType)
             {
-                case EAssetType.Coin: UserSaveDataManager.AddCoin(cost); break;
-                case EAssetType.Gem: UserSaveDataManager.AddGem(cost); break;
+                case EAssetType.Coin: 
+                    UserSaveDataManager.AddCoin(cost);
+                    break;
+
+                case EAssetType.Gem: 
+                    UserSaveDataManager.AddGem(cost);
+                    break;
             }
+
+            UserSaveDataManager.SetAcquiredItemIndex();
         }
     }
 }

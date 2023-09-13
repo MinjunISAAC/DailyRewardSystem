@@ -86,6 +86,16 @@ namespace Utility.ForData.User
         {
             var dateTimeStr = $"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}";
             _entryDataTime = dateTimeStr;
-        } 
+        }
+
+        public void SetAcquiredItemIndex() 
+        {
+            _lastAcquiredItemIndex++;
+
+            if (_lastAcquiredItemIndex == 7)
+                _lastAcquiredItemIndex = 0;
+        }
+
+        public int GetAcquiredItemIndex() => _lastAcquiredItemIndex;
     }
 }

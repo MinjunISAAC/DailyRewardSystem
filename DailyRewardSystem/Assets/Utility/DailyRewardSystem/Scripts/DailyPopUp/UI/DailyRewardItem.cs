@@ -6,11 +6,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Utility.ForAsset;
+using Utility.ForData.User;
 
 namespace InGame.DailySystem.ForUI
 {
     public class DailyRewardItem : MonoBehaviour
     {
+        // --------------------------------------------------
+        // Enum
+        // --------------------------------------------------
+
         // --------------------------------------------------
         // Components
         // --------------------------------------------------
@@ -24,7 +29,8 @@ namespace InGame.DailySystem.ForUI
         [Space(1.5f)] [Header("Images")]
         [SerializeField] private Image           _IMG_Hide          = null;
         [SerializeField] private Image           _IMG_Icon          = null;
-        [Space()]
+        
+        [Space(1f)]
         [SerializeField] private Sprite          _SPRITE_UnPurchase = null;
         [SerializeField] private Sprite          _SPRITE_Purchase   = null;
         [SerializeField] private Sprite          _SPRITE_coin       = null;
@@ -42,7 +48,6 @@ namespace InGame.DailySystem.ForUI
                 default: return;
             }
 
-            
             _TMP_dayText.text = $"{index + 1} DAY";
             _TMP_cost.text    = $"{value}";
 
@@ -50,12 +55,46 @@ namespace InGame.DailySystem.ForUI
             if (_BTN_Click.onClick.GetPersistentEventCount() > 1)
                 return;
 
-            _BTN_Click.onClick.AddListener(() => { onClick((EAssetType)(type + 1), value);  Debug.Log($"Asset {index} {type} {value}"); });
-
-
+            _BTN_Click.onClick.AddListener
+            (
+                () => 
+                { 
+                    onClick((EAssetType)(type + 1), value);  
+                    Debug.Log($"Asset {index} {type} {value}");
+                }
+            );
 
             // Hide Image 셋팅
+            _RefreshUI(index);
+        }
 
+        private void _RefreshUI(int index)
+        {
+            if (index == UserSaveDataManager.GetAcquiredItemIndex())     // 먹는 날 인경우
+            {
+                _BTN_Click.interactable = true;
+
+                var colorBlock = _BTN_Click.colors;
+                colorBlock.colorMultiplier = 1f;
+
+                _IMG_Hide.gameObject.SetActive(false);
+
+                _BTN_Click.enabled = true;
+            }
+            else if (index < UserSaveDataManager.GetAcquiredItemIndex()) // 먹은 이전인 경우
+            {
+                _BTN_Click.interactable = false;
+                
+                var colorBlock = _BTN_Click.colors;
+                colorBlock.colorMultiplier = 3f;
+                
+                _IMG_Hide.gameObject.SetActive(true);
+                _BTN_Click.enabled = false;
+            }
+            else if (index > UserSaveDataManager.GetAcquiredItemIndex()) // 먹지 못하는 경우
+            {
+                _BTN_Click.enabled = false;
+            }
         }
     }
 }

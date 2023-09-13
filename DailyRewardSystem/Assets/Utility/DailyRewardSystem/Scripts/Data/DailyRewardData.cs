@@ -7,7 +7,7 @@ namespace InGame.DailySystem.ForData
     public class Data
     {
         public string type;
-        public int[] values;
+        public int[]  values;
     }
 
     [System.Serializable]

@@ -73,6 +73,7 @@ namespace Utility.ForData.User
             }
         }
 
+        // ----- Data
         public static void AddCoin(int coin)
         {
             if (UserSaveData == null)
@@ -132,6 +133,12 @@ namespace Utility.ForData.User
             Save();
         }
 
+        public static void SetAcquiredItemIndex()
+        {
+            UserSaveData.SetAcquiredItemIndex();
+            Save();
+        }
+
         public static bool ShowToDailyPopUp()
         {
             string nowDateTime  = DateTime.Now.ToString("yyyy-MM-dd");
@@ -156,6 +163,8 @@ namespace Utility.ForData.User
                 (nowDay   == prevDay)) return true;
             else                       return false;
         }
+
+        public static int GetAcquiredItemIndex() => UserSaveData.GetAcquiredItemIndex();
 
         // ----- Private
         private static bool _TryLoad(string fileName, out string fileContents)
